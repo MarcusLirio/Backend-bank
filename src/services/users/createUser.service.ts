@@ -7,20 +7,12 @@ import { Account } from "../../entities/account.entity";
 
 const createUserService = async ({
   username,
-  password,
-  name,
-  email,
-  age,
+  password
 }: IUserRequest): Promise<User> => {
   const userRepository = AppDataSource.getRepository(User);
 
   const users = await userRepository.find();
 
-  const emailAlreadyExists = users.find((user) => user.email === email);
-
-  if (emailAlreadyExists) {
-    throw new AppError(400, "Email already exists");
-  }
 
   const usernameAlreadyExists = users.find(
     (user) => user.username === username
@@ -39,9 +31,6 @@ const createUserService = async ({
   const user = userRepository.create({
     username,
     password: hashedPass,
-    name,
-    email,
-    age,
     account,
   });
 

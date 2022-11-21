@@ -6,7 +6,7 @@ import userSchema from "../schemas/users.schemas";
 
 const userRoutes = Router();
 
-userRoutes.post("", validationMiddleware(userSchema), createUserController);
-userRoutes.post("/login", loginUserController);
+userRoutes.post("/singnup", validationMiddleware(userSchema), createUserController);
+userRoutes.post("/singnin", loginUserController);
 
 export default userRoutes;

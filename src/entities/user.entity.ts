@@ -1,14 +1,12 @@
 import {
   Entity,
   Column,
-  PrimaryGeneratedColumn,
-  CreateDateColumn,
-  OneToOne,
   JoinColumn,
+  PrimaryGeneratedColumn,
+  OneToOne
 } from "typeorm";
 import { Account } from "./account.entity";
 import { Exclude } from "class-transformer";
-
 @Entity("users")
 export class User {
   @PrimaryGeneratedColumn("uuid")
@@ -20,18 +18,6 @@ export class User {
   @Column()
   @Exclude()
   password: string;
-
-  @Column({ length: 50 })
-  name: string;
-
-  @Column({ unique: true, length: 256 })
-  email: string;
-
-  @Column()
-  age: number;
-
-  @CreateDateColumn()
-  memberSince: Date;
 
   @OneToOne(() => Account, { eager: true, onDelete: "CASCADE" })
   @JoinColumn()

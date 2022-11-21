@@ -4,13 +4,10 @@ import createUserService from "../../services/users/createUser.service";
 import { instanceToPlain } from "class-transformer";
 
 const createUserController = async (req: Request, res: Response) => {
-  const { username, password, name, email, age }: IUserRequest = req.body;
+  const { username, password }: IUserRequest = req.body;
   const user = await createUserService({
     username,
-    password,
-    name,
-    email,
-    age,
+    password
   });
 
   return res.status(201).json(instanceToPlain(user));
